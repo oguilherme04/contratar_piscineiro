@@ -1,0 +1,98 @@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Sistema PH+</div>
+    </a>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}" id="home-link">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Início</span></a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-heading">
+        Piscineiro
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'piscineiro_index' %}" id="piscineiro-link">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Piscineiros</span>
+        </a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link" href="/equipamento/" id="equipamento-link">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Equipamento</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-heading">
+        Cliente
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'cliente_index' %}" id="cliente-link">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Clientes</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/piscina/" id="piscina-link">
+            <i class="fas fa-fw fa-swimming-pool"></i>
+            <span>Piscina</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/manutencao/" id="manutencao-link">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Manutenção</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
+
+<script>
+    function setActiveLink() {
+        const allNavItems = document.querySelectorAll('.nav-item');
+        allNavItems.forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        const currentPath = window.location.pathname;
+        
+        if (currentPath === '/' || currentPath === '/home/') {
+            document.getElementById('home-link').parentElement.classList.add('active');
+        } else if (currentPath.startsWith('/piscina')) {
+            document.getElementById('piscina-link').parentElement.classList.add('active');
+        } else if (currentPath.startsWith('/equipamento')) {
+            document.getElementById('equipamento-link').parentElement.classList.add('active');
+        } else if (currentPath.startsWith('/manutencao')) {
+            document.getElementById('manutencao-link').parentElement.classList.add('active');
+        } else if (currentPath.startsWith('/cliente')) {
+            document.getElementById('cliente-link').parentElement.classList.add('active');
+        } else if (currentPath.startsWith('/piscineiro')) {
+            document.getElementById('piscineiro-link').parentElement.classList.add('active');
+        }
+    }
+    
+    document.addEventListener('DOMContentLoaded', setActiveLink);
+</script>
