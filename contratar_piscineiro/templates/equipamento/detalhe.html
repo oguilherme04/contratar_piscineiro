@@ -1,6 +1,35 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Detalhes do Equipamento{% endblock %}
-{% block content %}
 
+{% block title %}Detalhes do Equipamento{% endblock %}
+
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Detalhes do Equipamento</h1>
+    <a href="{% url 'equipamento_index' %}" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+        <i class="fas fa-arrow-left fa-sm text-white-50"></i> Voltar
+    </a>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Nome:</strong> {{ equipamento.nome }}</p>
+                <p><strong>Marca:</strong> {{ equipamento.marca }}</p>
+                <p><strong>Modelo:</strong> {{ equipamento.modelo }}</p>
+                <p><strong>Proprietário:</strong> {{ equipamento.proprietario }}</p>
+                <p><strong>Descrição:</strong> {{ equipamento.descricao }}</p>
+            </div>
+        </div>
+        <div class="mt-4">
+            <a href="{% url 'equipamento_edit' equipamento.id %}" class="btn btn-warning">
+                <i class="fas fa-edit"></i> Editar
+            </a>
+            <a href="{% url 'equipamento_delete' equipamento.id %}" class="btn btn-danger">
+                <i class="fas fa-trash"></i> Excluir
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}

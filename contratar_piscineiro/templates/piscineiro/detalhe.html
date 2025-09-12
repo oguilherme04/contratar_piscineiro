@@ -1,6 +1,42 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Detalhes do Piscineiro{% endblock %}
-{% block content %}
 
+{% block title %}Detalhes do Piscineiro{% endblock %}
+
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Detalhes do Piscineiro</h1>
+    <a href="{% url 'piscineiro_index' %}" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+        <i class="fas fa-arrow-left fa-sm text-white-50"></i> Voltar
+    </a>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Nome:</strong> {{ piscineiro.get_full_name|default:piscineiro.username }}</p>
+                <p><strong>Email:</strong> {{ piscineiro.email|default:"Não informado" }}</p>
+                <p><strong>CPF/CNPJ:</strong> {{ piscineiro.cpf_cnpj|default:"Não informado" }}</p>
+                <p><strong>Telefone:</strong> {{ piscineiro.telefone|default:"Não informado" }}</p>
+                <p><strong>Disponibilidade:</strong> 
+                    {% if piscineiro.disponibilidade %}
+                        <span class="badge badge-success">Disponível</span>
+                    {% else %}
+                        <span class="badge badge-danger">Indisponível</span>
+                    {% endif %}
+                </p>
+                <p><strong>Experiência:</strong> {{ piscineiro.experiencia|default:"Não informado" }}</p>
+            </div>
+        </div>
+        <div class="mt-4">
+            <a href="{% url 'piscineiro_edit' piscineiro.id %}" class="btn btn-warning">
+                <i class="fas fa-edit"></i> Editar
+            </a>
+            <a href="{% url 'piscineiro_delete' piscineiro.id %}" class="btn btn-danger">
+                <i class="fas fa-trash"></i> Excluir
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}

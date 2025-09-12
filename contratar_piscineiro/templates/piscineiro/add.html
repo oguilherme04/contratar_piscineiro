@@ -1,6 +1,100 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %}Adicionar Piscineiro{% endblock %}
+
 {% block content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Adicionar Piscineiro</h1>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Formulário de Cadastro</h6>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_cpf_cnpj" class="font-weight-bold">CPF/CNPJ*</label>
+                        {{ form.cpf_cnpj }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_telefone" class="font-weight-bold">Telefone*</label>
+                        {{ form.telefone }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="id_experiencia" class="font-weight-bold">Experiência*</label>
+                        {{ form.experiencia }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-0 d-flex align-items-end" style="height: 74px;">
+                <div class="d-flex align-items-center h-100">
+                    {{ form.disponibilidade }}
+                    <label class="form-check-label font-weight-bold ms-2 mb-0" for="id_disponibilidade">
+                        Disponível
+                    </label>
+                </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-top">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Salvar Piscineiro
+                </button>
+                <a href="{% url 'piscineiro_index' %}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        max-width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    select {
+        height: calc(2.25rem + 2px);
+    }
+
+    .form-check-input {
+        margin: 0;
+        width: 18px;
+        height: 18px;
+    }
+</style>
 
 {% endblock %}
