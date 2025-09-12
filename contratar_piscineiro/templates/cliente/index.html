@@ -1,6 +1,103 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Clientes{% endblock %}
-{% block content %}
 
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Clientes</h1>
+    <a href="{% url 'cliente_add' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50"></i> Novo Cliente
+    </a>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Lista de Clientes</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered custom-table-header" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF/CNPJ</th>
+                        <th>Telefone</th>
+                        <th>Endereço</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in clientes %}
+                    <tr>
+                        <td>{{ cliente.get_full_name|default:cliente.username }}</td>
+                        <td>{{ cliente.cpf_cnpj|default:"Não informado" }}</td>
+                        <td>{{ cliente.telefone|default:"Não informado" }}</td>
+                        <td>
+                            {% if cliente.rua and cliente.numero and cliente.bairro %}
+                                {{ cliente.rua }}, {{ cliente.numero }} - {{ cliente.bairro }}
+                            {% else %}
+                                Não informado
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group">
+                                <a href="{% url 'cliente_detalhe' cliente.id %}" class="btn btn-info btn-sm"
+                                    title="Visualizar">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{% url 'cliente_edit' cliente.id %}" class="btn btn-warning btn-sm"
+                                    title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{% url 'cliente_delete' cliente.id %}" class="btn btn-danger btn-sm"
+                                    title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center py-4">
+                            <i class="fas fa-users fa-3x text-gray-300 mb-3"></i>
+                            <p class="text-muted">Nenhum cliente cadastrado.</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    #dataTable th:nth-child(5),
+    #dataTable td:nth-child(5) {
+        width: 120px;
+        min-width: 120px;
+        max-width: 120px;
+    }
+
+    .btn-group-sm>.btn,
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    table.custom-table-header thead tr {
+        background-color: #000000 !important;
+    }
+
+    table.custom-table-header thead th {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border-color: #444 !important;
+        border-bottom: 2px solid #444 !important;
+    }
+
+    table.custom-table-header thead th:hover {
+        background-color: #1a1a1a !important;
+    }
+</style>
 {% endblock %}

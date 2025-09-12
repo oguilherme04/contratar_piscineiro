@@ -1,6 +1,38 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Excluir Cliente{% endblock %}
-{% block content %}
 
+{% block title %}Excluir Cliente{% endblock %}
+
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Excluir Cliente</h1>
+    <a href="{% url 'cliente_index' %}" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+        <i class="fas fa-arrow-left fa-sm text-white-50"></i> Voltar
+    </a>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Confirmar Exclusão</h6>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-warning" role="alert">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Atenção!</strong> Tem certeza que deseja excluir o cliente "{{ cliente.cpf_cnpj }}"?
+            <p class="mt-2 mb-0">Esta ação não pode ser desfeita.</p>
+        </div>
+        
+        <div class="mt-4">
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Confirmar Exclusão
+                </button>
+                <a href="{% url 'cliente_index' %}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Cancelar
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
