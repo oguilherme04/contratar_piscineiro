@@ -29,3 +29,6 @@ Criar um superusuário (opcional, para acessar o admin):
 
 ## Link do Vídeo
  - https://youtu.be/C468hPHX5Ww
+
+## Diagrama
+ - ![Diagrama](diagrama.jpeg)
