@@ -11,13 +11,11 @@ def index(request):
     
     can_edit = user_is_admin(request.user)
     can_delete = user_is_admin(request.user)
-    can_add = user_is_piscineiro(request.user) and not Piscineiro.objects.filter(id=request.user.id).exists()
     
     return render(request, 'piscineiro/index.html', {
         'piscineiros': piscineiros,
         'can_edit': can_edit,
-        'can_delete': can_delete,
-        'can_add': can_add
+        'can_delete': can_delete
     })
 
 @login_required
