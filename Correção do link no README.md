@@ -12,7 +12,7 @@ O sistema permite:
 Com isso, o projeto funciona como um sistema de *gestão de serviços de piscina*, permitindo organizar clientes, profissionais, equipamentos e manutenções em um só lugar.
 
 ## Como Executar Localmente
-1. git clone https://github.com/seu-usuario/seu-repositorio.git
+1. git clone https://github.com/oguilherme04/contratar_piscineiro.git
 
 2. cd contratar_piscineiro
 
