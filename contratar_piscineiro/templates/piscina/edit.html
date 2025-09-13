@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Editar Piscina{% endblock %}
+
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Editar Piscina</h1>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Formulário de Edição</h6>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+                        
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_cliente" class="font-weight-bold">Cliente*</label>
+                        {{ form.cliente }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_tipo" class="font-weight-bold">Tipo*</label>
+                        {{ form.tipo }}
+                        <small class="form-text text-muted">Ex: Olímpica, Infantil, Terapêutica</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_volume" class="font-weight-bold">Volume(L)*</label>
+                        {{ form.volume }}
+                        <small class="form-text text-muted">Capacidade total em litros</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-check pl-0">
+                    <label for="id_privada" class="font-weight-bold d-block">Privada</label>
+                    <div class="d-flex align-items-center">
+                        {{ form.privada }}
+                        <label class="form-check-label ml-2 mb-0" for="id_privada">
+                            Esta piscina é privada
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-4 pt-3 border-top">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Salvar Alterações
+                </button>
+                <a href="{% url 'piscina_index' %}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    input, select, textarea {
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    select {
+        height: calc(2.25rem + 2px);
+    }
+    
+    .form-check {
+        padding-left: 0;
+    }
+    .form-check-label {
+        margin-bottom: 0;
+    }
+    #id_cliente, #id_tipo, #id_volume {
+        width: 100%;
+        max-width: 100%;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Detalhes da Piscina{% endblock %}
+
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Detalhes da Piscina</h1>
+    <a href="{% url 'piscina_index' %}" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+        <i class="fas fa-arrow-left fa-sm text-white-50"></i> Voltar
+    </a>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Cliente:</strong> {{ piscina.cliente.username }}</p>
+                <p><strong>Tipo:</strong> {{ piscina.tipo }}</p>
+                <p><strong>Volume:</strong> {{ piscina.volume }} L</p>
+                <p><strong>Privada:</strong> {% if piscina.privada %}Sim{% else %}Não{% endif %}</p>
+            </div>
+        </div>
+        <div class="mt-4">
+            <a href="{% url 'piscina_edit' piscina.id %}" class="btn btn-warning">
+                <i class="fas fa-edit"></i> Editar
+            </a>
+            <a href="{% url 'piscina_delete' piscina.id %}" class="btn btn-danger">
+                <i class="fas fa-trash"></i> Excluir
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
