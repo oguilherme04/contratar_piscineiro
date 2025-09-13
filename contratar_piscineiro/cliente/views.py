@@ -11,11 +11,13 @@ def index(request):
     
     can_edit = user_is_admin(request.user)
     can_delete = user_is_admin(request.user)
+    can_add = user_is_cliente(request.user) and not Cliente.objects.filter(id=request.user.id).exists()
     
     return render(request, 'cliente/index.html', {
         'clientes': clientes,
         'can_edit': can_edit,
-        'can_delete': can_delete
+        'can_delete': can_delete,
+        'can_add': can_add
     })
 
 @login_required
