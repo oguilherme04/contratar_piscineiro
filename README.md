@@ -14,7 +14,9 @@ Com isso, o projeto funciona como um sistema de *gestão de serviços de piscina
 ## Como Executar Localmente
 1. git clone https://github.com/oguilherme04/contratar_piscineiro.git
 
-2. cd contratar_piscineiro
+2. cd contratar_piscineiro\contratar_piscineiro
+   
+3. python manage.py runserver
 
 ## Integrantes do Grupo
 1. DIAMILI SOIANE PEREIRA DA SILVA
